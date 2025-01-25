@@ -95,7 +95,8 @@ public class PlayerController : MonoBehaviour
     
     void Jump()
     {
-        playerRB.linearVelocity = new Vector3(0f, jumpForce, 0f); 
+        playerRB.linearVelocity = new Vector3(0f, jumpForce, 0f);
+        playerAnimator.SetTrigger("Jump");
         jumpInput = false; 
     }
 }
