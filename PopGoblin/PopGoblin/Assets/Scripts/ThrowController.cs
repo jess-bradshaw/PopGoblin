@@ -67,6 +67,13 @@ public class ThrowController : MonoBehaviour
     {
         if (objectToThrow == null) return;
 
+        // Unparent the item so it’s free
+        objectToThrow.transform.SetParent(null);
+
+        //set layer back to default
+        int defaultLayer = LayerMask.NameToLayer("Default");
+        objectToThrow.gameObject.layer = defaultLayer;
+
         // Calculate final throw force
         float throwForce = maxThrowForce * power;
 

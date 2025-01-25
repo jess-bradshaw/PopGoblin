@@ -25,10 +25,10 @@ public class Spawner : MonoBehaviour
 
     [Header("Texture Swap (Optional)")]
     [Tooltip("Texture used before popping.")]
-    [SerializeField] private Texture originalTexture;
+    [SerializeField] private Material originalTexture;
 
     [Tooltip("Texture shown at the moment of pop.")]
-    [SerializeField] private Texture popTexture;
+    [SerializeField] private Material popTexture;
 
     [Header("Pop Visibility Timing")]
     [Tooltip("How long to keep the pop texture visible before we spawn the item and destroy the effect object.")]
@@ -94,7 +94,7 @@ public class Spawner : MonoBehaviour
             Renderer effectRenderer = effectObjectInstance.GetComponent<Renderer>();
             if (effectRenderer != null && originalTexture != null)
             {
-                effectRenderer.material.mainTexture = originalTexture;
+                effectRenderer.material = originalTexture;
             }
 
             // Animate it rising up
@@ -107,7 +107,7 @@ public class Spawner : MonoBehaviour
             }
             if (effectRenderer != null && popTexture != null)
             {
-                effectRenderer.material.mainTexture = popTexture;
+                effectRenderer.material = popTexture;
             }
 
             // 4) Wait so the pop texture is visible for a bit
