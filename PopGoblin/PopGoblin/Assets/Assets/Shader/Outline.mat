@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonShade
-  m_Shader: {fileID: -6465566751694194690, guid: 3b5a4f6e1e8707b4b8676756834d8de5, type: 3}
+  m_Name: Outline
+  m_Shader: {fileID: -6465566751694194690, guid: 38f38b12ebdf2d24cbf8cf5221fc0b26, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
     m_Floats:
     - _Fresnel_Power: 1
     - _Fresnel_Threshold: 0.5
-    - _OutlineThickness: 0.1
+    - _OutlineThickness: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
