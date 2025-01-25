@@ -22,6 +22,13 @@ public class ThrowController : MonoBehaviour
 
     private float currentHoldTime = 0f;
     private bool isHolding = false;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
 
     void Update()
     {
@@ -30,6 +37,7 @@ public class ThrowController : MonoBehaviour
         {
             isHolding = true;
             currentHoldTime = 0f;
+            animator.SetBool("ThrowWindUp", true);
         }
 
         // increment hold time (charge power)
@@ -58,6 +66,9 @@ public class ThrowController : MonoBehaviour
             currentHoldTime = 0f;
             if (powerSlider)
                 powerSlider.value = 0f;
+
+            animator.SetBool("ThrowWindUp", false);
+            animator.SetTrigger("Throw");
         }
     }
 
@@ -82,11 +93,18 @@ public class ThrowController : MonoBehaviour
 
         // Calculate directional vector based on angle
         // Assuming 'forward' is the horizontal axis and 'up' is vertical:
-        Vector3 forceDirection = new Vector3(
-            Mathf.Cos(angleInRadians),
-            Mathf.Sin(angleInRadians),
-            0f
-        );
+        //Vector3 forceDirection = new Vector3(
+        //    Mathf.Cos(angleInRadians),
+        //    Mathf.Sin(angleInRadians),
+        //    0f
+        Vector3 right2D = transform.right;   // The player's right-hand direction
+        right2D.z = 0f;                      // Zero out Z if you only want 2D movement
+
+        Vector3 up2D = transform.up;         // The player's up direction
+        up2D.z = 0f;                         // Zero out Z for 2D plane
+
+        Vector3 forceDirection = right2D * Mathf.Cos(angleInRadians)
+                               + up2D * Mathf.Sin(angleInRadians);
 
         // diff orientation i.e z use:
         // Vector3 forceDirection = new Vector3(0f, Mathf.Sin(angleInRadians), Mathf.Cos(angleInRadians));
