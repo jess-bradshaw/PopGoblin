@@ -8306,9 +8306,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1302128300431047957, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
+      propertyPath: throwSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c62e76cfaf1129e4e9a91d98230133e4, type: 3}
+    - target: {fileID: 1302128300431047957, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 508186640}
+    - target: {fileID: 1302128300431047957, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
       propertyPath: powerSlider
       value: 
       objectReference: {fileID: 1745006496}
+    - target: {fileID: 1653543950704410936, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 41c362557347dd445a4a505216aaedd7, type: 3}
+    - target: {fileID: 1653543950704410936, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 508186640}
     - target: {fileID: 6166161629231300503, guid: e1cac2fb8ebcf0840ab2139b4ea24d42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.14

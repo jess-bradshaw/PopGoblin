@@ -24,6 +24,9 @@ public class ThrowController : MonoBehaviour
     private bool isHolding = false;
     private Animator animator;
 
+    public AudioClip throwSound;
+    [SerializeField] private AudioSource audioSource;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -68,6 +71,7 @@ public class ThrowController : MonoBehaviour
                 powerSlider.value = 0f;
 
             animator.SetBool("ThrowWindUp", false);
+            audioSource.PlayOneShot(throwSound);
             animator.SetTrigger("Throw");
         }
     }
@@ -114,8 +118,9 @@ public class ThrowController : MonoBehaviour
 
         // Apply impulse force so it yeets in one go
         objectToThrow.AddForce(forceDirection * throwForce, ForceMode.Impulse);
+        
 
-         DestroyAfterTime destroyScript = objectToThrow.GetComponent<DestroyAfterTime>();
+        DestroyAfterTime destroyScript = objectToThrow.GetComponent<DestroyAfterTime>();
         if (destroyScript != null)
         {
             //Start the destruction timer only after we've thrown it

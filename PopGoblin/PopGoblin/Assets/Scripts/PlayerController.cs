@@ -22,7 +22,11 @@ public class PlayerController : MonoBehaviour
     Quaternion flipRight = Quaternion.Euler(0, 0, 0);
 
     Rigidbody playerRB; 
-    Animator playerAnimator; 
+    Animator playerAnimator;
+
+    //audio sounds
+    public AudioClip jumpSound;
+    [SerializeField] private AudioSource audioSource;
 
     void Start()
     {
@@ -97,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRB.linearVelocity = new Vector3(0f, jumpForce, 0f);
         playerAnimator.SetTrigger("Jump");
-        jumpInput = false; 
+        jumpInput = false;
+        audioSource.PlayOneShot(jumpSound);
     }
 }
