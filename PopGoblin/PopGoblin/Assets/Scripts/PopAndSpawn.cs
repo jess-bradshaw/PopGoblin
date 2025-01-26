@@ -14,6 +14,9 @@ public class ThoughtBubblePop : MonoBehaviour
     [Tooltip("Sprite to display once this bubble is popped.")]
     [SerializeField] private Sprite bubblePoppedSprite;
 
+    [Tooltip("Audio source used to play the 'pop' sound.")]
+    [SerializeField] private AudioSource BubblePopSound;
+
     [Header("New Bubble to Spawn")]
     [Tooltip("Prefab for the new bubble that grows after popping.")]
     [SerializeField] private GameObject newBubblePrefab;
@@ -63,7 +66,11 @@ public class ThoughtBubblePop : MonoBehaviour
         if (bubbleSpriteRenderer != null && bubblePoppedSprite != null)
         {
             bubbleSpriteRenderer.sprite = bubblePoppedSprite;
+            BubblePopSound.Play();
         }
+
+           
+        
 
 
         //Spawn the new bubble (if assigned)
