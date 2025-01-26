@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CactusPlant
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: dfee64c7da9621f44ab1b7b1d2f68b4d, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
