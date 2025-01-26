@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float respawnDelay = 2f;
 
     [Header("Pop Effect (Prefab)")]
-    [Tooltip("Prefab that appears for the pop animation (plane, quad, etc.).")]
+    [Tooltip("Prefab that appears for the pop animation")]
     [SerializeField] private GameObject effectObjectPrefab;
 
     [Tooltip("How high to move the effect object before spawning the item.")]
@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
     [Tooltip("Audio source used to play the 'pop' sound.")]
     [SerializeField] private AudioSource popSound;
 
-    [Header("Texture Swap (Optional)")]
+    [Header("Texture Swap")]
     [Tooltip("Texture used before popping.")]
     [SerializeField] private Material originalTexture;
 
@@ -31,18 +31,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Material popTexture;
 
     [Header("Pop Visibility Timing")]
-    [Tooltip("How long to keep the pop texture visible before we spawn the item and destroy the effect object.")]
+    [Tooltip("How long to keep the pop texture visible before spawn the item and destroy the effect object.")]
     [SerializeField] private float popVisibleTime = 0.5f;
 
     private void Start()
     {
-        // Optionally spawn an item at scene start
+        //Optionally spawn an item at scene start
         SpawnItem();
     }
 
-    /// <summary>
-    /// Spawns a new item and sets its spawner reference.
-    /// </summary>
+    
     private void SpawnItem()
     {
         if (itemPrefab == null)
@@ -54,7 +52,7 @@ public class Spawner : MonoBehaviour
         GameObject newItem = Instantiate(itemPrefab, transform.position, Quaternion.identity);
         DestroyAfterTime destroyScript = newItem.GetComponent<DestroyAfterTime>();
 
-        // Let the new item know which spawner created it
+        //Let the new item know which spawner created it
         if (destroyScript != null)
         {
             destroyScript.SetSpawner(this);
@@ -65,10 +63,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called by the item (DestroyAfterTime) when it's destroyed.
-    /// Starts the "pop" sequence, then spawns a new item afterward.
-    /// </summary>
+   
     public void StartRespawnSequence()
     {
         Debug.Log($"StartRespawnSequence called on spawner {name}.");
@@ -77,10 +72,10 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator RespawnSequence()
     {
-        // 1) Wait before starting the pop animation
+        //Wait before starting the pop animation
         yield return new WaitForSeconds(respawnDelay);
 
-        // 2) Instantiate the effect prefab, preserving the prefab's rotation
+        //Instantiate the effect prefab, preserving the prefab's rotation
         GameObject effectObjectInstance = null;
         if (effectObjectPrefab != null)
         {
@@ -90,17 +85,17 @@ public class Spawner : MonoBehaviour
                 effectObjectPrefab.transform.rotation
             );
 
-            // Optionally set the original texture
+            //Optionally set the original texture
             Renderer effectRenderer = effectObjectInstance.GetComponent<Renderer>();
             if (effectRenderer != null && originalTexture != null)
             {
                 effectRenderer.material = originalTexture;
             }
 
-            // Animate it rising up
+            //Animate it rising up
             yield return StartCoroutine(RiseEffectObject(effectObjectInstance));
 
-            // 3) Play pop sound and switch texture
+            //Play pop sound and switch texture
             if (popSound != null)
             {
                 popSound.Play();
@@ -110,10 +105,10 @@ public class Spawner : MonoBehaviour
                 effectRenderer.material = popTexture;
             }
 
-            // 4) Wait so the pop texture is visible for a bit
+            //Wait so the pop texture is visible for a bit
             yield return new WaitForSeconds(popVisibleTime);
 
-            // 5) Spawn the new item at the effect object's position
+            //Spawn the new item at the effect object's position
             Vector3 spawnPos = effectObjectInstance.transform.position;
             GameObject newItem = Instantiate(itemPrefab, spawnPos, Quaternion.identity);
             if (newItem != null)
@@ -125,7 +120,7 @@ public class Spawner : MonoBehaviour
                 }
             }
 
-            // 6) Destroy the effect object
+            //Destroy the effect object
             Destroy(effectObjectInstance);
         }
         else

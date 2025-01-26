@@ -36,14 +36,13 @@ public class ThoughtBubblePop : MonoBehaviour
 
     [SerializeField] private float poppedVisibilityDuration = 1f;
 
-    // Prevent double-popping
+    [Header("Level Complete Camera")]
+    [SerializeField] private GameObject levelComplete;
+
+    // Prevent double-pops
     private bool hasPopped = false;
 
-    /// <summary>
-    /// If this bubble has a standard (non-trigger) 3D collider,
-    /// we'll detect collisions here. If your bubble is a trigger, 
-    /// change to OnTriggerEnter(Collider other).
-    /// </summary>
+   
     private void OnCollisionEnter(Collision collision)
     {
         // Only pop once
@@ -57,11 +56,7 @@ public class ThoughtBubblePop : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when we detect the correct pop item collision.
-    /// 1) Swap this bubble's sprite to the popped sprite.
-    /// 2) Spawn a new bubble and grow it.
-    /// </summary>
+    // bubble pop
     private void PopBubble()
     {
         // 1) Swap bubble sprite
@@ -71,29 +66,28 @@ public class ThoughtBubblePop : MonoBehaviour
         }
 
 
-        // 2) Spawn the new bubble (if assigned)
+        //Spawn the new bubble (if assigned)
         if (newBubblePrefab != null)
         {
-            // Create it at the same position as this bubble
+            //Create it at the same position as this bubble
             GameObject newBubble = Instantiate(newBubblePrefab, transform.position, Quaternion.identity);
 
-            // Set initial scale to zero (or whatever you specified)
+            //Set initial scale to zero (or whatever you specified)
             newBubble.transform.localScale = newBubbleStartScale;
 
-            // Animate it growing
+            levelComplete.SetActive(true);
+
+            //Animate it growing
             StartCoroutine(GrowNewBubble(newBubble.transform));
         }
     }
 
-    /// <summary>
-    /// Grows the newly spawned bubble from 'newBubbleStartScale' to 'newBubbleFinalScale'
-    /// over 'newBubbleGrowthDuration'. Once it finishes, we swap the NPC's sprite.
-    /// </summary>
+   //grow the new thing
     private IEnumerator GrowNewBubble(Transform bubbleTransform)
     {
         yield return new WaitForSeconds(poppedVisibilityDuration);
 
-        // 3. Make the bubble invisible
+        //Make the bubble invisible
         if (bubbleSpriteRenderer != null)
         {
             bubbleSpriteRenderer.enabled = false;
@@ -117,5 +111,7 @@ public class ThoughtBubblePop : MonoBehaviour
         {
             npcSpriteRenderer.sprite = npcNewSprite;
         }
+
+        
     }
 }

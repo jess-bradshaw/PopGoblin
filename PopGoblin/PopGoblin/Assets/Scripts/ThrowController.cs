@@ -98,9 +98,9 @@ public class ThrowController : MonoBehaviour
         //    Mathf.Sin(angleInRadians),
         //    0f
         Vector3 right2D = transform.right;   // The player's right-hand direction
-        right2D.z = 0f;                      // Zero out Z if you only want 2D movement
+        right2D.z = 0f;                      // Zero out Z if want 2D movement
 
-        Vector3 up2D = transform.up;         // The player's up direction
+        Vector3 up2D = transform.up;         // The player's up 
         up2D.z = 0f;                         // Zero out Z for 2D plane
 
         Vector3 forceDirection = right2D * Mathf.Cos(angleInRadians)
@@ -118,7 +118,7 @@ public class ThrowController : MonoBehaviour
          DestroyAfterTime destroyScript = objectToThrow.GetComponent<DestroyAfterTime>();
         if (destroyScript != null)
         {
-            // Start the destruction timer only after we've thrown it
+            //Start the destruction timer only after we've thrown it
             destroyScript.BeginDestructionTimer();
         }
     }

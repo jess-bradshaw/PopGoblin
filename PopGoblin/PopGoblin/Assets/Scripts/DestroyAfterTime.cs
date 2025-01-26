@@ -3,10 +3,9 @@ using UnityEngine;
 public class DestroyAfterTime : MonoBehaviour
 {
     [Header("Lifetime Settings")]
-    [Tooltip("How long before this item is destroyed and requests a respawn.")]
+    [Tooltip("items life before respawn.")]
     [SerializeField] private float lifeTime = 5f;
 
-    //stop destroy starting straight away
     [Header("Start Respawn System - remove Update function after pickup script")]
     [Tooltip("remove update function once pick is working")]
     [SerializeField]

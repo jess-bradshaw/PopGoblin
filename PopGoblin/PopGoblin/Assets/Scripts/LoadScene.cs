@@ -25,10 +25,16 @@ public class LoadScene : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu"); 
     }
 
-   // IEnumerator Transition()
-   // {
+    public void LoadComic()
+    {
+        //StartCoroutine ("Transition");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Comic");
+    }
+
+    // IEnumerator Transition()
+    // {
     //    transition.SetTrigger("Start");
     //    bubble.Play("Plane_Transition");
-   //     yield return new WaitForSeconds(1f);
-   // }
+    //     yield return new WaitForSeconds(1f);
+    // }
 }
